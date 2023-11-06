@@ -1,6 +1,6 @@
 from aiogram import Bot
 
-from config import BOT_TOKEN
+from src.config import BOT_TOKEN
 
 __all__ = ["bot"]
 

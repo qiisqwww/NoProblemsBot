@@ -4,11 +4,11 @@ from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 
-from messages import (START_MESSAGE,
+from src.messages import (START_MESSAGE,
                       ASK_MESSAGE,
                       QUESTION_HANDLED_MESSAGE)
-from states import AskStates
-from admins_poll import admins_poll
+from src.states import AskStates
+from src.admins_poll import admins_poll
 
 issues_router = Router()
 issues_router.message.filter(F.chat.type.in_({"private"}))

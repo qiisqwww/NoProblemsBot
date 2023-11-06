@@ -2,9 +2,9 @@ import logging
 
 from aiogram import Dispatcher
 
-from config import LOGGING_PATH
-from init_bot import bot
-from issues_handler import issues_router
+from src.config import LOGGING_PATH
+from src.init_bot import bot
+from src.issues_handler import issues_router
 
 
 def init_logger() -> None:

@@ -1,9 +1,11 @@
 version: '3.9'
 
 services:
-  headman_bot:
+  no_problems_bot:
     build:
       dockerfile: Dockerfile
       context: ./
     volumes:
       - /var/log/noproblemsbot:/app/logs
+
+

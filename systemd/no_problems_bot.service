@@ -1,6 +1,6 @@
 [Unit]
 After=network.target
-Description=Headman bot
+Description=No Problems Bot
 
 [Service]
 Type=simple

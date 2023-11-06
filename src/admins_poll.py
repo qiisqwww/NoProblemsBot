@@ -2,9 +2,9 @@ import logging
 
 from aiogram.enums import ParseMode
 
-from config import ADMIN_ID_1, ADMIN_ID_2
-from init_bot import bot
-from messages import new_question
+from src.config import ADMIN_ID_1, ADMIN_ID_2
+from src.init_bot import bot
+from src.messages import new_question
 
 __all__ = ["admins_poll"]
 
