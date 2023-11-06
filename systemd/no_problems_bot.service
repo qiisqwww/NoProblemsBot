@@ -1,0 +1,9 @@
+[Unit]
+After=network.target
+Description=Headman bot
+
+[Service]
+Type=simple
+ExecStart=/var/www/NoProblemsBot/scripts/start.sh
+ExecStop=/var/www/NoProblemsBot/scripts/down.sh
+Restart=always
