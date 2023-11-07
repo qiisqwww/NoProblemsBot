@@ -6,7 +6,7 @@ from aiogram.types import Message
 from aiogram.dispatcher.flags import get_flag
 from aiogram.fsm.storage.redis import RedisStorage
 
-from messages import TIMEOUT_MESSAGE
+from src.messages import TIMEOUT_MESSAGE
 
 __all__ = ["AskTimeoutMiddleware"]
 
