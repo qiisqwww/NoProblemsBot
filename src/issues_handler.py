@@ -3,7 +3,6 @@ import logging
 from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.storage.redis import RedisStorage
 
 from src.messages import (START_MESSAGE,
                       ASK_MESSAGE,
@@ -16,9 +15,8 @@ from src.buttons import load_main_keyboard
 
 
 issues_router = Router()
-storage = RedisStorage.from_url("redis://localhost:6379")
-issues_router.message.middleware.register(ThrottlingMiddleware(storage))
-issues_router.message.middleware.register(AskTimeoutMiddleware(storage))
+issues_router.message.middleware.register(ThrottlingMiddleware())
+issues_router.message.middleware.register(AskTimeoutMiddleware())
 issues_router.message.filter(F.chat.type.in_({"private"}))
 
 

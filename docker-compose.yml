@@ -9,15 +9,15 @@ services:
       - /var/log/noproblemsbot:/app/logs
     depends_on:
       - redis
-    environment:
-      REDIS_PORT: 6379
+
 
   redis:
     image: redis:5-alpine
     restart: on-failure
+    ports:
+      - 6379:6379
     volumes:
-      - redis_data:/data
+      - /var/log/noproblemsbot:/data
 
 volumes:
-    postgres_data:
     redis_data:
