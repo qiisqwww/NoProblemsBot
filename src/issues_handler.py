@@ -9,8 +9,11 @@ from src.messages import (START_MESSAGE,
                       QUESTION_HANDLED_MESSAGE)
 from src.states import AskStates
 from src.admins_poll import admins_poll
+from src. throttling_middleware import ThrottlingMiddleware
+
 
 issues_router = Router()
+issues_router.message.outer_middleware(ThrottlingMiddleware())
 issues_router.message.filter(F.chat.type.in_({"private"}))
 
 

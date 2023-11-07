@@ -1,6 +1,7 @@
 __all__ = ["START_MESSAGE",
            "ASK_MESSAGE",
            "QUESTION_HANDLED_MESSAGE",
+           "TIMEOUT_MESSAGE",
            "new_question"]
 
 START_MESSAGE = """Приветствую! Чтобы задать вопрос или предложить что-нибудь, введите /ask"""
@@ -8,6 +9,8 @@ START_MESSAGE = """Приветствую! Чтобы задать вопрос 
 ASK_MESSAGE = """Введите ваш вопрос или предложение."""
 
 QUESTION_HANDLED_MESSAGE = """Ваш вопрос будет рассмотрен администрацией."""
+
+TIMEOUT_MESSAGE = """Вопросы можно писать не чаще, чем раз в 10 минут."""
 
 
 def new_question(question: str, user_id: int) -> str:
