@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 import redis
 
@@ -13,11 +14,21 @@ class RedisService:
                                 port=6379,
                                 decode_responses=True)
 
-    def set_user(self, user_id: str) -> None:
-        self._con.set(user_id, "True", ex=3600)
+    def set_user_ask(self, user_id: str) -> None:
+        self._con.set("ask"+user_id, "True", ex=6)
+        print(user_id)
 
-    def get_user(self, user_id: str) -> bool:
-        return self._con.get(user_id) is not None
+    def get_user_ask(self, user_id: str) -> bool:
+        return self._con.get("ask"+user_id) is not None
+
+    def set_user_throttling(self, user_id: str) -> None:
+        self._con.set("thr"+user_id, 0, ex=15)
+
+    def increase_user_throttling(self, user_id: str) -> None:
+        self._con.incr("thr"+user_id)
+
+    def get_user_throttling(self, user_id: str) -> Any[None, int]:
+        return self._con.get("thr"+user_id)
 
     def __enter__(self) -> "RedisService":
         return self

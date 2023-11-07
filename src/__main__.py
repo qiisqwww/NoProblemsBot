@@ -1,4 +1,5 @@
 import asyncio
+import redis
 
 from src.main import main
 
