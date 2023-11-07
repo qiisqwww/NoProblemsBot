@@ -1,3 +1,4 @@
+import logging
 from typing import Callable, Any, Awaitable
 
 from aiogram import BaseMiddleware
@@ -30,15 +31,14 @@ class AskTimeoutMiddleware(BaseMiddleware):
             return await handler(event,data)
 
         user_activity = await self._storage.redis.get("ask"+user_id)
-        print(user_activity)
 
         if not user_activity and ask == "asked":
-            print(1)
+            logging.info("600")
             await self._storage.redis.set("ask"+user_id, "asked", ex=600)
             return await handler(event, data)
 
         if user_activity is not None and ask == "asking":
-            print(2)
+            logging.info("timeout")
             await event.answer(TIMEOUT_MESSAGE)
             return
 
