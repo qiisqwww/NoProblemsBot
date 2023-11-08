@@ -30,8 +30,8 @@ class ThrottlingMiddleware(BaseMiddleware):
                 storage.set_user_throttling(user_id)
                 return await handler(event, data)
 
-        if int(user_activity) >= 10:
-            return
+            if int(user_activity) >= 10:
+                return
 
-        storage.increase_user_throttling(user_id)
-        return await handler(event, data)
+            storage.increase_user_throttling(user_id)
+            return await handler(event, data)
