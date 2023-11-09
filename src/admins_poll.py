@@ -8,6 +8,7 @@ from src.messages import new_question
 __all__ = ["admins_poll"]
 
 
+@logger.catch(message=f"Admins were not polled ")
 async def admins_poll(question: str, user_id: int) -> None:
     for ADMIN_ID in ADMIN_ID_1, ADMIN_ID_2:
         await bot.send_message(ADMIN_ID, new_question(question, user_id),
