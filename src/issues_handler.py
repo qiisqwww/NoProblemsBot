@@ -1,5 +1,4 @@
-import logging
-
+from loguru import logger
 from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
@@ -22,14 +21,14 @@ issues_router.message.filter(F.chat.type.in_({"private"}))
 
 @issues_router.message(Command("start"))
 async def start_command(message: types.Message) -> None:
-    logging.info("start command handled")
+    logger.info("Start command handled.")
 
     await message.answer(START_MESSAGE, reply_markup=load_main_keyboard())
 
 
 @issues_router.message(Command("ask"), flags={"ask": "asking"})
 async def start_command(message: types.Message, state: FSMContext) -> None:
-    logging.info("ask command handled")
+    logger.info("Ask command handled.")
 
     await message.answer(ASK_MESSAGE, reply_markup=load_main_keyboard())
     await state.set_state(AskStates.question_input)
@@ -37,7 +36,7 @@ async def start_command(message: types.Message, state: FSMContext) -> None:
 
 @issues_router.message(AskStates.question_input, F.text, flags={"ask": "asked"})
 async def handling_quiestion(message: types.Message, state: FSMContext) -> None:
-    logging.info("question handled")
+    logger.info("Question was handled.")
 
     await message.answer(QUESTION_HANDLED_MESSAGE, reply_markup=load_main_keyboard())
     await state.clear()

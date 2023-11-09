@@ -1,5 +1,6 @@
 from typing import Callable, Any, Awaitable
 
+from loguru import logger
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.dispatcher.flags import get_flag
@@ -31,6 +32,8 @@ class ThrottlingMiddleware(BaseMiddleware):
                 return await handler(event, data)
 
             if int(user_activity) >= 10:
+                logger.warning(f"User {user_id} is spammint (event throttled).")
+
                 return
 
             storage.increase_user_throttling(user_id)

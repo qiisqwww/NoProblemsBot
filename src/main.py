@@ -1,6 +1,5 @@
-import logging
-
 from aiogram import Dispatcher
+from loguru import logger
 
 from src.config import LOGGING_PATH
 from src.init_bot import bot
@@ -8,11 +7,11 @@ from src.issues_handler import issues_router
 
 
 def init_logger() -> None:
-    logging.basicConfig(
-        filename=LOGGING_PATH,
-        level=logging.DEBUG,
-        format="%(asctime)s %(levelname)s %(message)s",
-    )
+    logger.add(
+        LOGGING_PATH,
+        compression="zip",
+        rotation="500 MB",
+        enqueue=True)
 
 
 async def main():
@@ -22,9 +21,9 @@ async def main():
 
     init_logger()
 
-    logging.info("bot is starting")
+    logger.info("Bot is starting.")
 
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
-    logging.info("bot was turned off")
+    logger.info("Bot was turned off.")

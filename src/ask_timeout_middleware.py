@@ -1,6 +1,6 @@
-import logging
 from typing import Callable, Any, Awaitable
 
+from loguru import logger
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.dispatcher.flags import get_flag
@@ -29,12 +29,11 @@ class AskTimeoutMiddleware(BaseMiddleware):
             user_activity = storage.get_user_ask(user_id)
 
             if not user_activity and ask == "asked":
-                logging.info("600")
                 storage.set_user_ask(user_id)
                 return await handler(event, data)
 
             if user_activity and ask == "asking":
-                logging.info("timeout")
+                logger.exception(f"User's {user_id} ask wasn't handled (user in timeout).")
                 await event.answer(TIMEOUT_MESSAGE)
                 return
 

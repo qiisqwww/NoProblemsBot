@@ -1,4 +1,4 @@
-import logging
+from loguru import logger
 
 import redis
 
@@ -33,6 +33,6 @@ class RedisService:
 
     def __exit__(self, exc_type, *_) -> None:
         if exc_type is not None:
-            logging.error(exc_type)
+            logger.error(exc_type)
 
         self._con.close()
