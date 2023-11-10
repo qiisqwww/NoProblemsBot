@@ -21,14 +21,14 @@ issues_router.message.filter(F.chat.type.in_({"private"}))
 
 @issues_router.message(Command("start"))
 async def start_command(message: types.Message) -> None:
-    logger.info("Start command handled.")
+    logger.info(f"Start command handled from {message.from_user.id}.")
 
     await message.answer(START_MESSAGE, reply_markup=load_main_keyboard())
 
 
 @issues_router.message(Command("ask"), flags={"ask": "asking"})
 async def start_command(message: types.Message, state: FSMContext) -> None:
-    logger.info("Ask command handled.")
+    logger.info(f"Ask command handled from {message.from_user.id}.")
 
     await message.answer(ASK_MESSAGE, reply_markup=load_main_keyboard())
     await state.set_state(AskStates.question_input)
@@ -36,7 +36,7 @@ async def start_command(message: types.Message, state: FSMContext) -> None:
 
 @issues_router.message(AskStates.question_input, F.text, flags={"ask": "asked"})
 async def handling_quiestion(message: types.Message, state: FSMContext) -> None:
-    logger.info("Question was handled.")
+    logger.info(f"Question was handled from {message.from_user.id}.")
 
     await message.answer(QUESTION_HANDLED_MESSAGE, reply_markup=load_main_keyboard())
     await state.clear()
@@ -44,5 +44,5 @@ async def handling_quiestion(message: types.Message, state: FSMContext) -> None:
 
 
 @issues_router.message(flags={"void": "void"})
-async def handles_everything() -> None:
+async def handles_void() -> None:
     pass

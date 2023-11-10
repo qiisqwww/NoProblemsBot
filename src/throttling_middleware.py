@@ -32,7 +32,7 @@ class ThrottlingMiddleware(BaseMiddleware):
                 return await handler(event, data)
 
             if int(user_activity) >= 10:
-                logger.warning(f"User {user_id} is spammint (event throttled).")
+                logger.warning(f"User {user_id} is spamming (event throttled).")
 
                 return
 
