@@ -24,7 +24,7 @@ class ThrottlingMiddleware(BaseMiddleware):
         if void:
             return
 
-        with RedisService() as storage:
+        async with RedisService() as storage:
             user_activity = await storage.get_user_throttling(user_id)
             if not user_activity:
                 await storage.set_user_throttling(user_id)

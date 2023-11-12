@@ -23,9 +23,9 @@ class AskTimeoutMiddleware(BaseMiddleware):
 
         ask = get_flag(data, "ask")
         if not ask:
-            return await handler(event,data)
+            return await handler(event, data)
 
-        with RedisService() as storage:
+        async with RedisService() as storage:
             user_activity = await storage.get_user_ask(user_id)
 
             if not user_activity and ask == "asked":
@@ -33,7 +33,7 @@ class AskTimeoutMiddleware(BaseMiddleware):
                 return await handler(event, data)
 
             if user_activity and ask == "asking":
-                logger.exception(f"User's {user_id} ask wasn't handled (user in timeout).")
+                logger.warning(f"User's {user_id} ask wasn't handled (user in timeout).")
                 await event.answer(TIMEOUT_MESSAGE)
                 return
 
