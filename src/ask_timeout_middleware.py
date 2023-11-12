@@ -26,10 +26,10 @@ class AskTimeoutMiddleware(BaseMiddleware):
             return await handler(event,data)
 
         with RedisService() as storage:
-            user_activity = storage.get_user_ask(user_id)
+            user_activity = await storage.get_user_ask(user_id)
 
             if not user_activity and ask == "asked":
-                storage.set_user_ask(user_id)
+                await storage.set_user_ask(user_id)
                 return await handler(event, data)
 
             if user_activity and ask == "asking":

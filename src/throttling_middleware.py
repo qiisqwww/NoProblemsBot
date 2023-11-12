@@ -20,15 +20,14 @@ class ThrottlingMiddleware(BaseMiddleware):
 
         user_id = str(event.from_user.id)
 
-
         void = get_flag(data, "void")
         if void:
             return
 
         with RedisService() as storage:
-            user_activity = storage.get_user_throttling(user_id)
+            user_activity = await storage.get_user_throttling(user_id)
             if not user_activity:
-                storage.set_user_throttling(user_id)
+                await storage.set_user_throttling(user_id)
                 return await handler(event, data)
 
             if int(user_activity) >= 10:
@@ -36,5 +35,5 @@ class ThrottlingMiddleware(BaseMiddleware):
 
                 return
 
-            storage.increase_user_throttling(user_id)
+            await storage.increase_user_throttling(user_id)
             return await handler(event, data)
