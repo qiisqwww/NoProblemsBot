@@ -25,9 +25,6 @@ async def main():
 
     await bot.delete_webhook(drop_pending_updates=True)
 
-    await bot.send_message(chat_id=892885258, text='''Ответ на ваш вопрос "Как работает бот?"\nБот является инструментом-помощником для старосты. 
-    Подробную информацию о функционале можно получить, если написать команду "Помощь" основному боту @grand_headman_bot''')
-
     await dp.start_polling(bot)
 
     logger.info("Bot was turned off.")
