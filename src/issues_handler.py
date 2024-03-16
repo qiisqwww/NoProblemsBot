@@ -35,7 +35,7 @@ async def start_command(message: types.Message, state: FSMContext) -> None:
 
 
 @issues_router.message(AskStates.question_input, F.text, flags={"ask": "asked"})
-async def handling_quiestion(message: types.Message, state: FSMContext) -> None:
+async def handling_question(message: types.Message, state: FSMContext) -> None:
     logger.info(f"Question was handled from {message.from_user.id}.")
 
     await message.answer(QUESTION_HANDLED_MESSAGE, reply_markup=load_main_keyboard())
