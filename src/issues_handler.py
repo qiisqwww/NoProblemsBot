@@ -40,7 +40,7 @@ async def handling_quiestion(message: types.Message, state: FSMContext) -> None:
 
     await message.answer(QUESTION_HANDLED_MESSAGE, reply_markup=load_main_keyboard())
     await state.clear()
-    await admins_poll(message.text, message.from_user.id)
+    await admins_poll(message.text, message.from_user.id, message.from_user.username)
 
 
 @issues_router.message(flags={"void": "void"})

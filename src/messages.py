@@ -13,6 +13,6 @@ QUESTION_HANDLED_MESSAGE = """Ваш вопрос будет рассмотре�
 TIMEOUT_MESSAGE = """Вопросы можно писать не чаще, чем раз в 10 минут."""
 
 
-def new_question(question: str, user_id: int) -> str:
-    return (f"&#10071; Поступило новое предложение от " + f'<a href="tg://user?id={user_id}">пользователя</a> c ID {user_id}&#10071; \n\n'
+def new_question(question: str, user_id: int, username: str) -> str:
+    return (f"&#10071; Поступило новое предложение от " + f'<a href="tg://user?id={user_id}">пользователя</a> c ID {user_id} и username {username}&#10071; \n\n'
               f'Его содержимое: {question}\n\nНе забудь рассмотреть!')
