@@ -1,8 +1,10 @@
-__all__ = ["START_MESSAGE",
-           "ASK_MESSAGE",
-           "QUESTION_HANDLED_MESSAGE",
-           "TIMEOUT_MESSAGE",
-           "new_question"]
+__all__ = [
+    "START_MESSAGE",
+    "ASK_MESSAGE",
+    "QUESTION_HANDLED_MESSAGE",
+    "TIMEOUT_MESSAGE",
+    "new_question"
+]
 
 START_MESSAGE = """Приветствую! Чтобы задать вопрос или предложить что-нибудь, введите /ask"""
 

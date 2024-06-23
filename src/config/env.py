@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 __all__ = [
     "UndefinedEnvError",
     "StrEnv",
+    "IntEnv"
 ]
 
 
@@ -24,6 +25,7 @@ class StrEnv(str):
         obj = str.__new__(cls, env)
 
         return obj
+
 
 class IntEnv(int):
     def __new__(cls, env_name: str):

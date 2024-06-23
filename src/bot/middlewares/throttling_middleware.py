@@ -5,9 +5,11 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.dispatcher.flags import get_flag
 
-from src.redis_service import RedisService
+from src.services.redis_service import RedisService
 
-__all__ = ["ThrottlingMiddleware"]
+__all__ = [
+    "ThrottlingMiddleware"
+]
 
 
 class ThrottlingMiddleware(BaseMiddleware):

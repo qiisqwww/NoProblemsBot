@@ -5,10 +5,12 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.dispatcher.flags import get_flag
 
-from src.messages import TIMEOUT_MESSAGE
-from src.redis_service import RedisService
+from src.bot.resources.messages import TIMEOUT_MESSAGE
+from src.services.redis_service import RedisService
 
-__all__ = ["AskTimeoutMiddleware"]
+__all__ = [
+    "AskTimeoutMiddleware"
+]
 
 
 class AskTimeoutMiddleware(BaseMiddleware):
@@ -20,6 +22,7 @@ class AskTimeoutMiddleware(BaseMiddleware):
     ) -> Any:
 
         user_id = str(event.from_user.id)
+        username = str(event.from_user.username)
 
         ask = get_flag(data, "ask")
         if not ask:
@@ -33,7 +36,7 @@ class AskTimeoutMiddleware(BaseMiddleware):
                 return await handler(event, data)
 
             if user_activity and ask == "asking":
-                logger.warning(f"User's {user_id} ask wasn't handled (user in timeout).")
+                logger.warning(f"{user_id} {username} ASK NOT HANDLED (TIMED OUT)")
                 await event.answer(TIMEOUT_MESSAGE)
                 return
 

@@ -4,7 +4,7 @@ services:
   no_problems_bot:
     build:
       dockerfile: Dockerfile
-      context: ./
+      context: ..
     volumes:
       - /var/log/noproblemsbot:/app/logs
     depends_on:

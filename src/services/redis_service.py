@@ -2,7 +2,9 @@ from loguru import logger
 
 import redis.asyncio as redis
 
-__all__ = ["RedisService"]
+__all__ = [
+    "RedisService"
+]
 
 
 class RedisService:
