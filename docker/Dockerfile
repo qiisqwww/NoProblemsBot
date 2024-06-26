@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
-CMD ["python", "-m", "sr    c"]
+CMD ["python", "-m", "src"]
