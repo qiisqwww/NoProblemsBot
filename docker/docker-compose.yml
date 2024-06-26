@@ -3,7 +3,7 @@ version: '3.9'
 services:
   no_problems_bot:
     build:
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       context: ..
     volumes:
       - /var/log/noproblemsbot:/app/logs
