@@ -5,7 +5,9 @@ from src.config import ADMIN_ID_1, ADMIN_ID_2
 from src.bot.init_bot import bot
 from src.bot.resources.messages import new_question
 
-__all__ = ["admins_poll"]
+__all__ = [
+    "admins_poll"
+]
 
 
 @logger.catch(message=f"Admins were not polled ")

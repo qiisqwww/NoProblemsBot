@@ -4,6 +4,6 @@ Description=No Problems Bot
 
 [Service]
 Type=simple
-ExecStart=/var/www/NoProblemsBot/scripts/start.sh
-ExecStop=/var/www/NoProblemsBot/scripts/down.sh
+ExecStart=/opt/NoProblemsBot/scripts/start.sh
+ExecStop=/opt/NoProblemsBot/scripts/down.sh
 Restart=always
